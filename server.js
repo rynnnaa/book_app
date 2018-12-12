@@ -14,6 +14,7 @@ app.use(cors());
 
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('./public'));
 
 app.set('view engine', 'ejs');
 
@@ -24,8 +25,7 @@ app.get('/', (req, res) => {
 });
  
 
-
-// //TODO: double check this is set up correctly
+// //TODO: this is for when results from database need to be displayed
 // app.get('/show', (req, res) => {
 //   res.render('../public/views/pages/searches/show',);
 // });
@@ -51,32 +51,16 @@ function Book(query, data) {
 
 // helper function
 function getBook (req, res) {
-  const bookHandler = {
-    query:req.body.search_query,
-    queryType: req.body.title==='on'
-  }
-  // const _URL =`https://www.googleapis.com/books/v1/volumes?q=${req.queryType}:${req.query}`;
-  // return superagent.get(_URL)
-  //   .then(data => {
+  const url =`https://www.googleapis.com/books/v1/volumes?q=${req.queryType}:${req.query}`;
+  return superagent.get(url)
+    .then(data => {
+      return new Book(query, data);
+    })
+  .catch(error => errorHandler(error));
+  };
+};
 
-    //   if(! data.body.results.length) {throw 'No Data';}
-    //   else {
-    //     let book = new Book(search_query, data.body.results[0]);
-    //   return book.save()
-    //   .then (result => {
-    //     book.id = result.rows[0].id
-    //     return book;
-    //   })
-    //   }
-    });
-}
-
-app.post('/show', getBook);
-
-//this is here for when we want to ejs a header into index
-// app.get('/header', (req, res) => {
-//   res.render('../public/views/pages/header', { greeting: greetingMessage });
-// });
+// app.post('/show', getBook);
 
 //TODO: double check if this is set up correctly
 // app.post('/show', (req, res) => {
