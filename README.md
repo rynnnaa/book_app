@@ -14,9 +14,9 @@ Actual time needed to complete: 2 hours 15 min
 
 Number and name of feature: Search the googlebooks api
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 2 hours
 
-Start time: 
+Start time: 11:50am
 
 Finish time: 
 
