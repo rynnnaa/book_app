@@ -11,10 +11,30 @@
   <header>
     <p> <%= greeting %> </p>
   </header>
-    <main>
-    </main>
-    <footer>
-    </footer>
+
+  <main>
+
+    <!-- these should create the query for the google books api -->
+    <form action="/show" method="post">
+    <label>Enter a title or author
+      <input type="text" name="search">
+    </label>
+
+    <label> Title
+      <input type="radio" name="title" value="query-type"> 
+    </label>
+
+    <label> Author
+      <input type="radio" name="author" value="query-type"> 
+    </label>
+
+    <!-- this should trigger the API to run, leads to get /search -->
+    <button>Search the Google Books API</button>
+
+  </main>
+
+  <footer>
+  </footer>
   
 </body>
 </html>
