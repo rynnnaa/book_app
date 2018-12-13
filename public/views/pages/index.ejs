@@ -16,15 +16,15 @@
     <!-- these should create the query for the google books api -->
     <form action="/show" method="post">
     <label>Enter a title or author
-      <input id="searchquery" type="text" name="search">
+      <input id="searchquery" type="text" name="search" required>
     </label>
 
     <label> Title
-      <input id="title" type="radio" name="title" value="title"> 
+      <input id="title" type="radio" name="title" value="title" required> 
     </label>
 
     <label> Author
-      <input id="author" type="radio" name="author" value="author"> 
+      <input id="author" type="radio" name="author" value="author" required> 
     </label>
 
     <!-- this should trigger the API to run, leads to get /search -->

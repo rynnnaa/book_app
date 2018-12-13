@@ -24,11 +24,12 @@ app.get('/', (req, res) => {
   res.render('../public/views/pages/index', { greeting: greetingMessage });
 });
  
-
+// app.post('../public/views/pages/searches/show', (req, res));
 // //TODO: this is for when results from database need to be displayed
-// app.get('/show', (req, res) => {
-//   res.render('../public/views/pages/searches/show',);
-// });
+app.get('/show', (req, res) => {
+  req.body
+  res.render('../public/views/pages/searches/show',);
+});
 
 function Book(query, data) {
   this.image = data.imageLinks.thumbnail;
@@ -50,7 +51,7 @@ function Book(query, data) {
 
 
 // helper function
-function getBook (req, res) {
+function getBooks (req, res) {
   const url =`https://www.googleapis.com/books/v1/volumes?q=${req.queryType}:${req.query}`;
   return superagent.get(url)
     .then(data => {
@@ -59,8 +60,6 @@ function getBook (req, res) {
   .catch(error => errorHandler(error));
   };
 };
-
-// app.post('/show', getBook);
 
 //TODO: double check if this is set up correctly
 // app.post('/show', (req, res) => {
